@@ -10,11 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # APP Splash Screen
+  flutter_native_splash: ^2.4.6
+
   # APP Responsiveness Test METHOD
   device_preview: ^1.2.0
-
-  # APP Launcher Logo (plugin only, config is below)
-  flutter_launcher_icons: ^0.13.1
 
   # APP Custom UI
   flutter_otp_text_field: ^1.5.1+1
@@ -79,3 +79,34 @@ flutter:
     - assets/icons/Verification/
     - assets/icons/Countries/
     - assets/images/
+
+# APP Splash Screen
+flutter_native_splash:
+  # Customize the parameters below, and run the following command in the terminal: dart run flutter_native_splash:create
+  # To restore Flutter's default white splash screen, run the following command in the terminal: dart run flutter_native_splash:remove
+  image: "assets/icons/AppIcon/App_Icon_200.png"
+  color: "#003082"
+  #background_image: "assets/icons/AppIcon/App_Icon.png"
+  #branding: "assets/dart.png"
+  #branding_mode: bottom
+  #branding_bottom_padding: 24
+  #image_dark: "assets/splash-invert.png"
+  #background_image_dark: "assets/dark-background.png"
+  #color_dark: "#042a49"
+  #branding_dark: "assets/dart_dark.png"
+  android_gravity: center
+  ios_content_mode: center
+  fullscreen: true
+
+  android_12:
+    image: "assets/icons/AppIcon/App_Icon_200.png"
+    color: "#003082"
+    #icon_background_color: "#111111"
+    #branding: "assets/icons/AppIcon/App_Icon.png"
+    #image_dark: "assets/android12splash-invert.png"
+    #icon_background_color_dark: "#eeeeee"
+    #color_dark: "#042a49"
+    fullscreen: true
+
+  android: true
+  ios: true
