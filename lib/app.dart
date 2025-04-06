@@ -12,7 +12,6 @@ class TestApp extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-  
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, child)
@@ -21,14 +20,12 @@ class TestApp extends StatelessWidget
           enabled: true,
           builder: (context) => MaterialApp.router(
             builder: DevicePreview.appBuilder,
-            locale: DevicePreview.locale(context),
-            routerConfig: AppRouter.router,
-        
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme(),
-
-            useInheritedMediaQuery: true,
-          ),
+              locale: DevicePreview.locale(context),
+              routerConfig: AppRouter.router,
+              theme: AppTheme.lightTheme(),
+              useInheritedMediaQuery: true,
+              debugShowCheckedModeBanner: false,
+            ),
         );
       },
     );
