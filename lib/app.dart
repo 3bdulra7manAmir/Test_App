@@ -25,7 +25,7 @@ class TestApp extends StatelessWidget
             routerConfig: AppRouter.router,
         
             debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme(),
+            //theme: AppTheme.lightTheme(),
 
             useInheritedMediaQuery: true,
           ),
