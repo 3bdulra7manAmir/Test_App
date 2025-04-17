@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../config/l10n/generated/app_localizations.dart';
 import '../../../../../config/themes/color_system/controller/theme_controller.dart';
+import 'app_first_launch_provider.dart';
 
 part 'theme_mode_text_provide.g.dart';
 
@@ -16,6 +17,12 @@ String selectedThemeLabel(SelectedThemeLabelRef ref)
 String getSelectedThemeLabel(WidgetRef ref, BuildContext context)
 {
   final themeLabel = ref.watch(selectedThemeLabelProvider).toLowerCase();
+  final isFirstLaunch = ref.watch(firstLaunchProvider).value ?? false;
+
+  if (isFirstLaunch)
+  {
+    return AppLocalizations.of(context).mode;
+  }
 
   return (themeLabel == 'dark' || themeLabel == 'داكن') ? AppLocalizations.of(context).dark : AppLocalizations.of(context).light;
 }

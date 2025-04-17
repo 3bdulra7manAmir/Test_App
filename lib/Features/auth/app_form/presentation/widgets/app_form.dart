@@ -76,7 +76,10 @@ Widget build(BuildContext context, WidgetRef ref)
           GestureDetector(
             onTap: () => showThemesBottomSheet(context),
             child: CustomContainer(
-              fieldPrefixIcon: Image.asset(provider.themeMode == Brightness.dark ? AppAssets.iconsPNG.darkPNG : AppAssets.iconsPNG.lightPNG),
+              fieldPrefixIcon: Image.asset(
+                  provider.isFirstLaunch ? AppAssets.iconsPNG.modePNG :
+                  provider.themeMode == Brightness.dark ? AppAssets.iconsPNG.darkPNG : AppAssets.iconsPNG.lightPNG
+                ),
               fieldText: provider.themeLabel,
               fieldsuffixIcon: arrowImage,
             ),

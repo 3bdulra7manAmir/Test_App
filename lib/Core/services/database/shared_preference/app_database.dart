@@ -7,6 +7,8 @@ class UserPreferences
 
   static final UserPreferences instance = UserPreferences._();
 
+  static const String _firstLaunchKey = 'first_launch';
+
   static const String _languageKey = 'language';
   static const String _countryKey = 'country';
   static const String _themeKey = 'theme';
@@ -27,6 +29,18 @@ class UserPreferences
   {
     _prefs ??= await SharedPreferences.getInstance();
     return _prefs!;
+  }
+
+  Future<bool> isFirstLaunch() async
+  {
+    final prefs = await _preferences;
+    return prefs.getBool(_firstLaunchKey) ?? true;
+  }
+
+  Future<void> setFirstLaunchDone() async
+  {
+    final prefs = await _preferences;
+    await prefs.setBool(_firstLaunchKey, false);
   }
 
   Future<void> saveLanguage(String code) async

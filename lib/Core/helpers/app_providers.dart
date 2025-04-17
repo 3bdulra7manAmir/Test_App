@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../Features/auth/app_form/presentation/controllers/language_icon_update_provider.dart';
 import '../../config/l10n/generated/app_localizations.dart';
 import '../../config/themes/color_system/controller/theme_controller.dart';
+import '../../features/auth/app_form/presentation/controllers/app_first_launch_provider.dart';
 import '../../features/auth/app_form/presentation/controllers/countries_icon_update_provider.dart';
 import '../../features/auth/app_form/presentation/controllers/theme_mode_text_provide.dart';
 import '../../features/auth/login_and_register/presentation/controllers/checkboc_provider.dart';
@@ -46,4 +47,6 @@ class AppProvidersProvider
   LoginType get loginType => ref.watch(loginTypeProvider);
 
   String get otpProvider => ref.watch(otpInputProvider);
+
+  bool get isFirstLaunch => ref.watch(firstLaunchProvider).value ?? false;
 }

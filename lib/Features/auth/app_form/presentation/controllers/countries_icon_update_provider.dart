@@ -6,6 +6,8 @@ import '../../../../../core/services/database/shared_preference/app_database.dar
 import '../../../../../core/services/database/static/app_form_data/app_countries_list.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'app_first_launch_provider.dart';
+
 part 'countries_icon_update_provider.g.dart';
 
 @riverpod
@@ -54,8 +56,14 @@ class CountryController extends _$CountryController
 String getSelectedCountryImage(WidgetRef ref, BuildContext context)
 {
   final selectedIndex = ref.watch(countryControllerProvider) ?? 0;
-  final selectedCountriesList = CountryUtils.getRoundedCountryImage();
+  final isFirstLaunch = ref.watch(firstLaunchProvider).value ?? false;
 
+  if (isFirstLaunch && selectedIndex == 0)
+  {
+    return AppAssets.iconsPNG.countryPNG;
+  }
+
+  final selectedCountriesList = CountryUtils.getRoundedCountryImage();
   if (selectedIndex < selectedCountriesList.length)
   {
     return selectedCountriesList[selectedIndex];
@@ -64,11 +72,18 @@ String getSelectedCountryImage(WidgetRef ref, BuildContext context)
   return AppAssets.iconsPNG.countryPNG;
 }
 
+
 String getSelectedCountryName(WidgetRef ref, BuildContext context)
 {
   final selectedIndex = ref.watch(countryControllerProvider) ?? 0;
-  final countries = CountryUtils.getCountryImageAndName(context);
+  final isFirstLaunch = ref.watch(firstLaunchProvider).value ?? false;
 
+  if (isFirstLaunch && selectedIndex == 0)
+  {
+    return AppLocalizations.of(context).country;
+  }
+
+  final countries = CountryUtils.getCountryImageAndName(context);
   if (selectedIndex < countries.length)
   {
     return countries[selectedIndex][1];

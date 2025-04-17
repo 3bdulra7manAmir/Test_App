@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../config/l10n/generated/app_localizations.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/services/localization/controller/localization_controller.dart';
+import 'app_first_launch_provider.dart';
 
 part 'language_icon_update_provider.g.dart';
 
@@ -17,6 +18,12 @@ String selectedLanguage(SelectedLanguageRef ref)
 String getSelectedLanguageImage(WidgetRef ref)
 {
   final languageCode = ref.watch(selectedLanguageProvider);
+  final isFirstLaunch = ref.watch(firstLaunchProvider).value ?? false;
+
+  if (isFirstLaunch)
+  {
+    return AppAssets.iconsPNG.languagePNG;
+  }
 
   return switch (languageCode)
   {
@@ -26,11 +33,19 @@ String getSelectedLanguageImage(WidgetRef ref)
   };
 }
 
+
 String getSelectedLanguageLabel(WidgetRef ref, BuildContext context)
 {
   final languageCode = ref.watch(selectedLanguageProvider);
+  final isFirstLaunch = ref.watch(firstLaunchProvider).value ?? false;
 
-  return switch (languageCode) {
+  if (isFirstLaunch && languageCode == 'en')
+  {
+    return AppLocalizations.of(context).language;
+  }
+
+  return switch (languageCode)
+  {
     'ar' => AppLocalizations.of(context).arabic,
     'en' => AppLocalizations.of(context).english,
     _ => AppLocalizations.of(context).language,
